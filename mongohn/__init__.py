@@ -1,3 +1,4 @@
+""" MongoHN - A HackerNews clone using MongoDB + Flask """
 
 from flask import Flask
 
