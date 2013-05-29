@@ -12,7 +12,7 @@ requires = []
 long_description = open('README.rst').read() + "\n\n" + open("ChangeLog").read()
 
 config = {
-    'name'            : 'mongohn',
+    'name'            : 'MongoHN',
     'description'     : 'A HackerNews-clone with a MongoDB backend.',
     'long_description': long_description,
     'author'          : 'Brandon Sandrowicz',
