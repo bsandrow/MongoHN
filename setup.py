@@ -19,12 +19,12 @@ config = {
     'author_email'    : 'brandon@sandrowicz.org',
     'url'             : 'https://github.com/bsandrow/mongohn',
     'version'         : '0.1',
-    'packages'        : ['mongohn'],
+    'packages'        : ['MongoHN'],
     'package_data'    : { '': ['LICENSE'] },
     'scripts'         : glob('bin/*'),
     'install_requires': requires,
     'license'         : open('LICENSE').read(),
-    'test_suite'      : 'mongohn.tests',
+    'test_suite'      : 'MongoHN.tests',
 }
 
 setup(**config)
