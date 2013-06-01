@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h2> Login </h2>
+
+        ERRORS: {{ form.errors }}
+
+        <form method="post" action="{{ url_for('login') }}">
+            {% if form.errors %}
+            <div> ERROR: Invalid username and/or password. </div>
+            {% endif %}
+            <dl>
+                <dt> {{ form.username.label }}
+                <dd> {{ form.username }}
+
+                <dt> {{ form.password.label }}
+                <dd> {{ form.password }}
+
+            </dl>
+            Remember Me? {{ form.remember_me }}<br/>
+            {{ form.hidden_tag() }}
+            {{ form.submit }}
+        </form>
+
+        Not registered? <a href="{{ url_for('register') }}" title="Registration Page">Register here.</a>
+    </body>
+</html>

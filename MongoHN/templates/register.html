@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h2> Register </h2>
+        <form method="post" action="{{ url_for('register') }}">
+            <dl>
+                {% if form.username.errors %}
+                <dt> {{ form.username.label }} : {{ form.username.errors }}
+                {% else %}
+                <dt> {{ form.username.label }}
+                {% endif %}
+                <dd> {{ form.username }}
+
+                <dt> {{ form.password.label }}
+                <dd> {{ form.password }}
+
+                <dt> {{ form.email.label }}
+                <dd> {{ form.email }}
+
+            </dl>
+            {{ form.hidden_tag() }}
+            {{ form.submit }}
+        </form>
+    </body>
+</html>
