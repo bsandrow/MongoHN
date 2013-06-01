@@ -3,7 +3,7 @@
 from MongoHN.models import User
 from flask.ext.wtf import Form
 from wtforms import SubmitField, TextField, BooleanField, PasswordField
-from wtforms.validators import Required, DataRequired
+from wtforms.validators import Required, DataRequired, ValidationError
 
 class LoginForm(Form):
     username = TextField('Username', validators = [ Required() ])
@@ -37,7 +37,7 @@ class RegistrationForm(Form):
 
     def validate_username(form, field):
         if User.objects(username=field.data).first():
-            raise ValueError("Username already exists.")
+            raise ValidationError("Username already exists.")
 
     def create_user(self):
         user = User()
