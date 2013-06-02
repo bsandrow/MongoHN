@@ -1,0 +1,5 @@
+- Fix 'Remember Me' checkbox to actually work.
+- Research / implement CSRF correctly.
+- Add ability to submit stories.
+- Add 'newest' page.
+- Start adding unit tests
