@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h2> Submit </h2>
+        <form method="post" action="{{ url_for('submit') }}">
+            {% if error_messages %}
+            <div style="border: solid black 1px;">
+                <strong> ERRORS: </strong>
+                <ul>
+                    {% for msg in error_messages %}
+                    <li>{{ msg }}</li>
+                    {% endfor %}
+                </ul>
+                {{ error_message | safe }}
+            </div>
+            {% endif %}
+            <dl>
+                <dt> {{ form.title.label }}
+                <dd> {{ form.title }}
+
+                <dt> {{ form.url.label }}
+                <dd> {{ form.url }}
+
+                <br><br>-- or --<br>
+
+                <dt> {{ form.text.label }}
+                <dd> {{ form.text }}
+
+            </dl>
+            {{ form.hidden_tag() }}
+            {{ form.submit }}
+        </form>
+    </body>
+</html>

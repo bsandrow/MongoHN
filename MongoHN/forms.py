@@ -1,9 +1,11 @@
 """ MongoHN.forms - WTForms used by MongoHN """
 
-from MongoHN.models import User
+from MongoHN.models import User, Story
 from flask.ext.wtf import Form
-from wtforms import SubmitField, TextField, BooleanField, PasswordField
-from wtforms.validators import Required, DataRequired, ValidationError
+from wtforms import SubmitField, TextField, TextAreaField, BooleanField, PasswordField
+from wtforms.validators import Required, DataRequired, ValidationError, URL
+
+import datetime
 
 class LoginForm(Form):
     username = TextField('Username', validators = [ Required() ])
@@ -46,5 +48,38 @@ class RegistrationForm(Form):
         user.email = self.email.data
         user.save()
         self.user = user
+
+class SubmitStoryForm(Form):
+    title = TextField('Title', [ DataRequired(message="A title is required.") ])
+    url = TextField('URL')
+    text = TextAreaField('Text')
+    submit = SubmitField('Post', validators=[ Required() ])
+
+    def validate(self):
+        rv = Form.validate(self)
+        if not rv:
+            return False
+
+        if not self.url.data and not self.text.data:
+            raise ValidationError("A URL or Text is required.")
+
+        if self.url.data and self.text.data:
+            raise ValidationError("Cannot enter both a URL and Text.")
+
+        if self.url.data:
+            rv = self.url._run_validation_chain(self, [
+                URL(message="Must enter a valid URL"),
+            ])
+            if not rv:
+                return False
+
+        return True
+
+    def create_story(self):
+        story = Story()
+        self.populate_obj(story)
+        story.date_posted = datetime.datetime.utcnow()
+        story.save()
+        return story
 
 #

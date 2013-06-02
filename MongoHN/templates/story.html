@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <dl>
+            <dt> <strong>Title</strong>
+            <dd> {{ story.title }}
+
+            <dt> <strong>URL</strong>
+            <dd> {% if story.url %} {{ story.url }} {% else %} {{ url_for('story', story_id=story.id) }} {% endif %}
+
+            <dt> <strong>Text</strong>
+            <dd> {{ story.text }}
+
+            <dt> <strong>Posted at</strong>
+            <dd> {{ story.date_posted }}
+    </body>
+</html>

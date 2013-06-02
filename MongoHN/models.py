@@ -24,3 +24,12 @@ class User(db.Document):
 
     def __repr__(self):
         return "<User(%s,%s)>" % (self.username, self.email)
+
+class Story(db.Document):
+    title = db.StringField(required=True)
+    url = db.StringField()
+    text = db.StringField()
+    date_posted = db.DateTimeField(required=True)
+
+    def __repr__(self):
+        return "<Story(%s,%s,%s)>" % (self.id, self.title, self.date_posted)

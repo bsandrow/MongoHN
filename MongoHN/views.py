@@ -1,7 +1,11 @@
 from flask import session, render_template, redirect, g, flash, url_for
 from flask.ext.login import login_required, login_user, logout_user, current_user
-from forms import LoginForm, RegistrationForm
+from wtforms.validators import ValidationError
+from forms import LoginForm, RegistrationForm, SubmitStoryForm
 from MongoHN import app, db, lm, models
+from itertools import chain
+
+import mongoengine.errors
 
 @lm.user_loader
 def load_user(id):
@@ -48,3 +52,33 @@ def register():
         return redirect(url_for('index'))
 
     return render_template('register.html', form=form)
+
+@app.route('/submit', methods=['GET','POST'])
+@login_required
+def submit():
+    error_messages = None
+    form = SubmitStoryForm()
+    try:
+        if form.validate_on_submit():
+            story = form.create_story()
+            return redirect(url_for('story', story_id=str(story.id)))
+        elif form.errors:
+            error_messages = chain(*form.errors.values())
+
+    except ValidationError as ve:
+        error_messages = [ ve.args[0] ]
+
+    return render_template('submit.html', form=form, error_messages=error_messages)
+
+@app.route('/story/<story_id>')
+def story(story_id):
+    try:
+        story = models.Story.objects(id=story_id).first()
+    except mongoengine.errors.ValidationError as e:
+        story = None
+
+    if story:
+        return render_template('story.html', story=story)
+    else:
+        return render_template('story_not_found.html'), 404
+
