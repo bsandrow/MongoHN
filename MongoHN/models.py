@@ -17,8 +17,7 @@ class User(db.Document):
         return True
 
     def get_id(self):
-        # XXX There's probably *some* reason that this is a bad idea.
-        return self.username
+        return str(self.id)
 
     def is_anonymous(self):
         return False

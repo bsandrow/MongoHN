@@ -5,7 +5,7 @@ from MongoHN import app, db, lm, models
 
 @lm.user_loader
 def load_user(id):
-    return models.User.objects(username=id).first()
+    return models.User.objects(id=id).first()
 
 @app.before_request
 def before_request():
