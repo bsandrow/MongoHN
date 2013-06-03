@@ -1,0 +1,4 @@
+include LICENSE
+include BUGS.rst
+include ChangeLog
+include README.rst
