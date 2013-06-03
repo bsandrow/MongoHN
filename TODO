@@ -1,2 +1,5 @@
 - Fix 'Remember Me' checkbox to actually work.
 - Start adding unit tests
+- user profile / preference page
+- admin users
+- better sessions via 'itsdangerous'
