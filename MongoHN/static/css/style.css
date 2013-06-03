@@ -1,17 +1,17 @@
 div.body {
-    width: 80%;
     margin-left: 10%;
     margin-right: 10%;
     background: #EEEEEE;
-    padding: 20px 5px;
+    padding: 20px 2em;
+    padding-bottom: 50px;
 }
 
 div.header {
-    width: 80%;
     margin-left: 10%;
     margin-right: 10%;
     padding: 3px 5px;
     background-color: orange;
+
     overflow: auto; /* accomodate the floats */
 }
 
