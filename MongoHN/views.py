@@ -36,9 +36,7 @@ def logout():
 
 @app.route('/')
 def index():
-    import pprint
-    pprint.pprint(session)
-    return render_template('index.html', user=current_user)
+    return render_template('index.html')
 
 @app.route('/register', methods=['GET','POST'])
 def register():
