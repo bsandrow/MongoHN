@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
+{% extends "base.html" %}
+{% block body %}
         <h2> Login </h2>
 
         ERRORS: {{ form.errors }}
@@ -25,5 +22,4 @@
         </form>
 
         Not registered? <a href="{{ url_for('register') }}" title="Registration Page">Register here.</a>
-    </body>
-</html>
+{% endblock %}

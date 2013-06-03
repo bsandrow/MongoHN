@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
+{% extends "base.html" %}
+{% block body %}
         <h2> Submit </h2>
         <form method="post" action="{{ url_for('submit') }}">
             {% if error_messages %}
@@ -32,5 +29,4 @@
             {{ form.hidden_tag() }}
             {{ form.submit }}
         </form>
-    </body>
-</html>
+{% endblock %}
