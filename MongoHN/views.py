@@ -87,7 +87,8 @@ def story(story_id):
 @app.route('/newest/page_<page>')
 def newest(page):
     stories = models.Story.newest_posts(page=page)
-    return render_template('newest.html', stories=stories)
+    start = (page - 1) * 20 + 1
+    return render_template('newest.html', stories=stories, start=start)
 
 
 
