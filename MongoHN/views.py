@@ -1,10 +1,10 @@
 from flask import session, render_template, redirect, g, flash, url_for
 from flask.ext.login import login_required, login_user, logout_user, current_user
 from wtforms.validators import ValidationError
-from forms import LoginForm, RegistrationForm, SubmitStoryForm
 from MongoHN import app, db, lm, models
 from itertools import chain
 
+import MongoHN.forms as forms
 import mongoengine.errors
 
 @lm.user_loader
@@ -20,7 +20,7 @@ def login():
     if g.user is not None and g.user.is_authenticated():
         return redirect(url_for('index'))
 
-    form = LoginForm()
+    form = forms.LoginForm()
     if form.validate_on_submit():
         login_user(form.user)
         flash("Logged in successfully.")
@@ -43,7 +43,7 @@ def register():
     if g.user is not None and g.user.is_authenticated():
         return redirect(url_for('index'))
 
-    form = RegistrationForm()
+    form = forms.RegistrationForm()
     if form.validate_on_submit():
         form.create_user()
         login_user(form.user)
@@ -55,7 +55,7 @@ def register():
 @login_required
 def submit():
     error_messages = None
-    form = SubmitStoryForm()
+    form = forms.SubmitStoryForm()
     try:
         if form.validate_on_submit():
             story = form.create_story()
