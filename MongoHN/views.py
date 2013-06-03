@@ -82,3 +82,13 @@ def story(story_id):
     else:
         return render_template('story_not_found.html'), 404
 
+@app.route('/newest', defaults={'page': 1})
+@app.route('/newest/', defaults={'page': 1})
+@app.route('/newest/page_<page>')
+def newest(page):
+    stories = models.Story.newest_posts(page=page)
+    return render_template('newest.html', stories=stories)
+
+
+
+

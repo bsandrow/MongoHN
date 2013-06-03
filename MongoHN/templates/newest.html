@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <ul>
+        {% for story in stories %}
+            {% if story.url %}
+                <li> <a href="{{ story.url }}">{{ story.title }}</a> </li>
+            {% else %}
+                <li> <a href="/story/{{ story.id }}">{{ story.title }}</a> </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </body>
+</html>
