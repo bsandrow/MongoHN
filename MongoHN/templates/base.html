@@ -13,11 +13,11 @@
                 <a href="/">MongoHN</a>
             </div>
             <div class="header-left">
-                <a href="/newest">New</a> <span class="sep">|</span> <a href="/submit">Submit</a>
+                <a href="/newest">New</a> | <a href="/submit">Submit</a>
             </div>
             <div class="header-right">
-                {% if user and not user.is_anonymous() %}
-                    <a href="/user/{{ user.username }}">{{ user.username }}</a> <span class="sep">|</span> <a href="/logout">Logout</a>
+                {% if g.user and g.user.is_authenticated() %}
+                    <a href="/user/{{ g.user.username }}">{{ g.user.username }}</a> | <a href="/logout">Logout</a>
                 {% else %}
                     <a href="/login">Login</a>
                 {% endif %}
